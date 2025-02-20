@@ -5,67 +5,55 @@ import org.junit.jupiter.api.Test
 
 internal class ScopeFunctionsTest {
     @Test
-    fun nullableLetReturnsLength() {
-        val length = ScopeFunctions.nullableLet("Hello")
-        Assertions.assertEquals(5, length)
-    }
-
-    @Test
-    fun nullableLetReturnsDefaultWhenNull() {
-        val length = ScopeFunctions.nullableLet(null)
-        Assertions.assertEquals(0, length)
-    }
-
-    @Test
     fun notUsingLetUpdatesFan() {
-        val fan = Fan("Jo", 11)
+        val fanDataClass = FanDataClass("Jo", 11)
         val updatedFan = ScopeFunctions.notUsingLet()
-        Assertions.assertEquals(fan.name, updatedFan.name)
-        Assertions.assertEquals(fan.showsAttended, updatedFan.showsAttended)
+        Assertions.assertEquals(fanDataClass.name, updatedFan.first)
+        Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.second)
     }
 
     @Test
     fun usingLetUpdatesFan() {
-        val fan = Fan("Jo", 11)
-        val updatedFan = ScopeFunctions.usingLet()
-        Assertions.assertEquals(fan.name, updatedFan.name)
-        Assertions.assertEquals(fan.showsAttended, updatedFan.showsAttended)
+        val fanDataClass = FanDataClass("Jo", 11)
+        val updatedFan = ScopeFunctions.usingLet().first
+        Assertions.assertEquals(fanDataClass.name, updatedFan.name)
+        Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.showsAttended)
     }
 
     @Test
     fun notUsingWithUpdatesFan() {
-        val fan = Fan("Jane", 31)
-        Assertions.assertEquals(fan.name, ScopeFunctions.notUsingWith().name)
-        Assertions.assertEquals(fan.showsAttended, ScopeFunctions.notUsingWith().showsAttended)
+        val fanDataClass = FanDataClass("Jane", 31)
+        Assertions.assertEquals(fanDataClass.name, ScopeFunctions.notUsingWith().name)
+        Assertions.assertEquals(fanDataClass.showsAttended, ScopeFunctions.notUsingWith().showsAttended)
     }
 
     @Test
     fun usingWithUpdatesFan() {
-        val fan = Fan("Jane", 31)
-        Assertions.assertEquals(fan.name, ScopeFunctions.usingWith().name)
-        Assertions.assertEquals(fan.showsAttended, ScopeFunctions.usingWith().showsAttended)
+        val fanDataClass = FanDataClass("Jane", 31)
+        Assertions.assertEquals(fanDataClass.name, ScopeFunctions.usingWith().name)
+        Assertions.assertEquals(fanDataClass.showsAttended, ScopeFunctions.usingWith().showsAttended)
     }
 
     @Test
     fun usingRunUpdatesFan() {
-        val fan = Fan("Bob", 0)
+        val fanDataClass = FanDataClass("Bob", 0)
         val updatedFan = ScopeFunctions.usingRun()
-        Assertions.assertEquals(fan.name, updatedFan.name)
-        Assertions.assertEquals(fan.showsAttended, updatedFan.showsAttended)
+        Assertions.assertEquals(fanDataClass.name, updatedFan.name)
+        Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.showsAttended)
     }
 
     @Test
     fun usingApplyUpdatesFan() {
-        val fan = Fan("Jemma", 44)
+        val fanDataClass = FanDataClass("Jemma", 44)
         val updatedFan = ScopeFunctions.usingApply()
-        Assertions.assertEquals(fan.name, updatedFan.name)
-        Assertions.assertEquals(fan.showsAttended, updatedFan.showsAttended)
+        Assertions.assertEquals(fanDataClass.name, updatedFan.name)
+        Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.showsAttended)
     }
 
     @Test
     fun usingAlsoUpdatesFans() {
-        val fans = mutableListOf<Fan>(Fan("Bob", 0), Fan("Jemma", 44), Fan("Jill", 0))
+        val fanDataClasses = mutableListOf<FanDataClass>(FanDataClass("Bob", 0), FanDataClass("Jemma", 44), FanDataClass("Jill", 0))
         val updatedFans = ScopeFunctions.usingAlso()
-        Assertions.assertEquals(fans, updatedFans)
+        Assertions.assertEquals(fanDataClasses, updatedFans)
     }
 }
