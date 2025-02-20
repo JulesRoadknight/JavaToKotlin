@@ -7,7 +7,7 @@ internal class ScopeFunctionsTest {
     @Test
     fun notUsingLetUpdatesFan() {
         val fanDataClass = FanDataClass("Jo", 11)
-        val updatedFan = ScopeFunctions.notUsingLet()
+        val updatedFan = ScopeFunctions.notUsingScopeFunctions()
         Assertions.assertEquals(fanDataClass.name, updatedFan.first)
         Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.second)
     }
@@ -18,13 +18,6 @@ internal class ScopeFunctionsTest {
         val updatedFan = ScopeFunctions.usingLet().first
         Assertions.assertEquals(fanDataClass.name, updatedFan.name)
         Assertions.assertEquals(fanDataClass.showsAttended, updatedFan.showsAttended)
-    }
-
-    @Test
-    fun notUsingWithUpdatesFan() {
-        val fanDataClass = FanDataClass("Jane", 31)
-        Assertions.assertEquals(fanDataClass.name, ScopeFunctions.notUsingWith().name)
-        Assertions.assertEquals(fanDataClass.showsAttended, ScopeFunctions.notUsingWith().showsAttended)
     }
 
     @Test
