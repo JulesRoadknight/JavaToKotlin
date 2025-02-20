@@ -2,7 +2,7 @@ package org.example.syntax
 
 class ScopeFunctions {
     companion object {
-        fun notUsingLet(): Pair<String, Int> {
+        fun notUsingScopeFunctions(): Pair<String, Int> {
             val fan = FanDataClass("Jim")
             fan.name = "Jo"
             fan.showsAttended = 11
@@ -18,13 +18,6 @@ class ScopeFunctions {
                 val successMessage = "Fan name updated to $it.name, fan shows attended updated to ${it.showsAttended}"
                 Pair(it, successMessage)
             }
-        }
-
-        fun notUsingWith(): FanDataClass {
-            val fan = FanDataClass("John", 30)
-            fan.name = "Jane"
-            fan.showsAttended++
-            return fan
         }
 
         fun usingWith(): FanDataClass {
