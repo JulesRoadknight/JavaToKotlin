@@ -45,16 +45,20 @@ class Variables {
         A List assigned to a var can't be updated, but can be overwritten
      */
     private val mutableFansList: MutableList<FanDataClass> = mutableListOf(FanDataClass("Jojo"), FanDataClass("Jane"))
+    private var immutableFansList: List<FanDataClass> = mutableListOf(FanDataClass("Jojo"), FanDataClass("Jane"))
+    // Notice that the List above is defined with mutableListOf() - it's still a List, so immutable anyway
+    // To make a truly permanent list, it must be a `val` with type `List`
+    private val finalFansList: List<FanDataClass> = mutableListOf(FanDataClass("Jojo"), FanDataClass("Jane"))
 
     fun addFanToMutableList(name: String) {
-        mutableFansList.add(FanDataClass(name))
+        val newFan = FanDataClass(name)
+        mutableFansList.add(newFan)
     }
-
-    private var immutableFansList: List<FanDataClass> = mutableListOf(FanDataClass("Jojo"), FanDataClass("Jane"))
+    //mutableFansList = mutableFansList + newFan  // val cannot be overwritten
 
     fun addFanToImmutableList(name: String) {
         val newFan = FanDataClass(name)
         immutableFansList = immutableFansList + newFan
-        //immutableFansList.add(newFan) //
     }
+    //immutableFansList.add(newFan) // List cannot be changed
 }
